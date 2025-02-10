@@ -64,40 +64,46 @@
     </div>
 
     <!-- Pop-up message -->
-    <div id="popup" class="popup">Yay! 🥰 You made my day! 💖</div>
+    <div id="popup" class="popup"></div>
 
     <script>
         let noClickCount = 0;
 
+        function showPopup(message) {
+            let popup = document.getElementById("popup");
+            popup.innerHTML = message;
+            popup.style.display = "block";
+            setTimeout(() => { popup.style.display = "none"; }, 2000); // Hide after 2s
+        }
+
         document.getElementById("no").addEventListener("click", function() {
             noClickCount++;
-
             let yesBtn = document.getElementById("yes");
 
             if (noClickCount === 1) {
-                alert("Are you sure? 🥺");
+                showPopup("Are you sure? 🥺");
             } else if (noClickCount === 2) {
-                alert("Seriously? 😔");
+                showPopup("Seriously? 😔");
             } else if (noClickCount === 3) {
-                alert("Think about it again... 😏");
+                showPopup("Think about it again... 😏");
             } else if (noClickCount === 4) {
-                alert("Plz say yes 🥺🙏🏻");
-                yesBtn.style.fontSize = "50px"; // Start growing
-            } else {
-                yesBtn.style.fontSize = (parseInt(window.getComputedStyle(yesBtn).fontSize) + 20) + "px";
-                yesBtn.style.padding = (parseInt(window.getComputedStyle(yesBtn).padding) + 10) + "px";
-                if (parseInt(window.getComputedStyle(yesBtn).fontSize) > 200) {
-                    yesBtn.style.width = "100vw";
-                    yesBtn.style.height = "100vh";
-                    yesBtn.innerText = "YES ❤️ FOREVER!";
-                }
+                showPopup("Plz say yes 🥺🙏🏻");
+            }
+
+            // Increase "Yes" button size after each "No" click
+            yesBtn.style.fontSize = (parseInt(window.getComputedStyle(yesBtn).fontSize) + 10) + "px";
+            yesBtn.style.padding = (parseInt(window.getComputedStyle(yesBtn).padding) + 5) + "px";
+
+            // When "Yes" button gets too big, make it cover the screen
+            if (parseInt(window.getComputedStyle(yesBtn).fontSize) > 100) {
+                yesBtn.style.width = "100vw";
+                yesBtn.style.height = "100vh";
+                yesBtn.innerText = "YES ❤️ FOREVER!";
             }
         });
 
         document.getElementById("yes").addEventListener("click", function() {
-            let popup = document.getElementById("popup");
-            popup.style.display = "block";
-            setTimeout(() => { popup.style.display = "none"; }, 3000); // Hide after 3s
+            showPopup("Yay! 🥰 You made my day! 💖");
         });
     </script>
 </body>
