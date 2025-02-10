@@ -23,18 +23,16 @@
             padding: 15px 30px;
             border: none;
             cursor: pointer;
-            position: absolute;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
         #yes {
             background-color: #ff0080; /* Dark pink */
             color: #ffdde1; /* Light pink */
-            border-radius: 10px;
-            position: static;
         }
         #no {
             background-color: #ff99cc; /* Normal pink */
             color: white;
-            border-radius: 10px;
         }
         /* Pop-up message */
         .popup {
@@ -69,11 +67,31 @@
     <div id="popup" class="popup">Yay! 🥰 You made my day! 💖</div>
 
     <script>
-        document.getElementById("no").addEventListener("mouseover", function() {
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 50);
-            this.style.left = x + "px";
-            this.style.top = y + "px";
+        let noClickCount = 0;
+
+        document.getElementById("no").addEventListener("click", function() {
+            noClickCount++;
+
+            let yesBtn = document.getElementById("yes");
+
+            if (noClickCount === 1) {
+                alert("Are you sure? 🥺");
+            } else if (noClickCount === 2) {
+                alert("Seriously? 😔");
+            } else if (noClickCount === 3) {
+                alert("Think about it again... 😏");
+            } else if (noClickCount === 4) {
+                alert("Plz say yes 🥺🙏🏻");
+                yesBtn.style.fontSize = "50px"; // Start growing
+            } else {
+                yesBtn.style.fontSize = (parseInt(window.getComputedStyle(yesBtn).fontSize) + 20) + "px";
+                yesBtn.style.padding = (parseInt(window.getComputedStyle(yesBtn).padding) + 10) + "px";
+                if (parseInt(window.getComputedStyle(yesBtn).fontSize) > 200) {
+                    yesBtn.style.width = "100vw";
+                    yesBtn.style.height = "100vh";
+                    yesBtn.innerText = "YES ❤️ FOREVER!";
+                }
+            }
         });
 
         document.getElementById("yes").addEventListener("click", function() {
