@@ -36,6 +36,26 @@
             color: white;
             border-radius: 10px;
         }
+        /* Pop-up message */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ff0080;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 25px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
     </style>
 </head>
 <body>
@@ -44,6 +64,9 @@
         <button id="yes">Yes ❤️</button>
         <button id="no">No 😢</button>
     </div>
+
+    <!-- Pop-up message -->
+    <div id="popup" class="popup">Yay! 🥰 You made my day! 💖</div>
 
     <script>
         document.getElementById("no").addEventListener("mouseover", function() {
@@ -54,7 +77,9 @@
         });
 
         document.getElementById("yes").addEventListener("click", function() {
-            alert("Yay! Let's go on a date! ❤️");
+            let popup = document.getElementById("popup");
+            popup.style.display = "block";
+            setTimeout(() => { popup.style.display = "none"; }, 3000); // Hide after 3s
         });
     </script>
 </body>
