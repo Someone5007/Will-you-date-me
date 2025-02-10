@@ -1,25 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Date Me?</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        button { font-size: 20px; padding: 10px; margin: 10px; cursor: pointer; }
-        #noBtn { position: absolute; }
+        body {
+            background-color: #ffdde1; /* Light pink */
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ff0080; /* Dark pink */
+            font-size: 50px;
+            margin-top: 100px;
+        }
+        .btn-container {
+            margin-top: 50px;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+        }
+        #yes {
+            background-color: #ff0080; /* Dark pink */
+            color: #ffdde1; /* Light pink */
+            border-radius: 10px;
+            position: static;
+        }
+        #no {
+            background-color: #ff99cc; /* Normal pink */
+            color: white;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Will You Date Me?</h1>
-    <button onclick="alert('Yay! ❤️')">Yes</button>
-    <button id="noBtn" onmouseover="moveButton()">No</button>
+    <h1>Will You Date Me? 💕</h1>
+    <div class="btn-container">
+        <button id="yes">Yes ❤️</button>
+        <button id="no">No 😢</button>
+    </div>
 
     <script>
-        function moveButton() {
-            let x = Math.random() * window.innerWidth - 100;
-            let y = Math.random() * window.innerHeight - 50;
-            document.getElementById("noBtn").style.left = x + "px";
-            document.getElementById("noBtn").style.top = y + "px";
-        }
+        document.getElementById("no").addEventListener("mouseover", function() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            this.style.left = x + "px";
+            this.style.top = y + "px";
+        });
+
+        document.getElementById("yes").addEventListener("click", function() {
+            alert("Yay! Let's go on a date! ❤️");
+        });
     </script>
 </body>
 </html>
