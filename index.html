@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Date Me?</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        button { font-size: 20px; padding: 10px; margin: 10px; cursor: pointer; }
+        #noBtn { position: absolute; }
+    </style>
+</head>
+<body>
+    <h1>Will You Date Me?</h1>
+    <button onclick="alert('Yay! ❤️')">Yes</button>
+    <button id="noBtn" onmouseover="moveButton()">No</button>
+
+    <script>
+        function moveButton() {
+            let x = Math.random() * window.innerWidth - 100;
+            let y = Math.random() * window.innerHeight - 50;
+            document.getElementById("noBtn").style.left = x + "px";
+            document.getElementById("noBtn").style.top = y + "px";
+        }
+    </script>
+</body>
+</html>
